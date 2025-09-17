@@ -11,16 +11,34 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # pozwala na auto-commit do repo (docs/)
     steps:
       - uses: actions/checkout@v4
 
-      # latexmk w kontenerze texlive-full odpali biber + makeglossaries wg latexmkrc
-      - uses: xu-cheng/latex-action@v3
+      # Budowa PDF (latexmk inside texlive-full container)
+      - name: Build PDF
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
+          args: -pdf -jobname="A-New-Covenant-for-Learning" -interaction=nonstopmode -file-line-error -halt-on-error
 
-      - uses: actions/upload-artifact@v4
+      # Kopia do docs/ pod GitHub Pages
+      - name: Prepare docs
+        run: |
+          mkdir -p docs
+          cp A-New-Covenant-for-Learning.pdf docs/
+
+      # Auto-commit PDF do gałęzi main (docs/)
+      - name: Commit PDF to docs
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          name: document
-          path: main.pdf
+          commit_message: "chore: update PDF [skip ci]"
+          file_pattern: docs/A-New-Covenant-for-Learning.pdf
+
+      # Artefakt do pobrania z Actions
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: A-New-Covenant-for-Learning
+          path: A-New-Covenant-for-Learning.pdf
