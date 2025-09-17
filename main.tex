@@ -29,6 +29,7 @@
 
 % Links
 \usepackage[hidelinks]{hyperref}
+\usepackage{orcidlink}
 
 % Clever references
 \usepackage[capitalise,noabbrev]{cleveref}
@@ -115,8 +116,33 @@
 }
 
 \title{A New Covenant for Learning: From Compulsion to Concert}
-\author{}
-\date{\today}
+
+\author{Janusz Feszter\,\orcidlink{0009-0002-1330-7530}\\
+\small \href{mailto:jfeshter@gmail.com}{jfeshter@gmail.com}\\
+\small X: \href{https://x.com/YaffFesh}{@YaffFesh} \quad
+\small GitHub: \href{https://github.com/jfesvd-crypto}{github.com/jfesvd-crypto}
+}
+
+\newcommand{\createddate}{13.09.2025}
+\date{Utworzono: \createddate\\Zaktualizowano: \today}
+
+% Math first
+\usepackage{amsmath}
+
+% Links
+\usepackage[hidelinks]{hyperref}
+
+% PDF metadata (tu wstaw)
+\hypersetup{
+  pdftitle={A New Covenant for Learning: From Compulsion to Concert},
+  pdfauthor={Janusz Feszter (ORCID 0009-0002-1330-7530)}
+  % opcjonalnie:
+  % pdfsubject={Education, Multi-Agent Systems},
+  % pdfkeywords={education, multi-agent, mastery learning, DLT}
+}
+
+% Clever references (musi być po hyperref)
+\usepackage[capitalise,noabbrev]{cleveref}
 
 \begin{document}
 \maketitle
