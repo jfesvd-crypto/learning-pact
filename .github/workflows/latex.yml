@@ -12,16 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # pozwala na auto-commit do repo (docs/)
+      contents: write   # potrzebne, by skomitować PDF do docs/
     steps:
       - uses: actions/checkout@v4
 
-      # Budowa PDF (latexmk inside texlive-full container)
+      # Budowa PDF (nazwa pliku = nazwa źródła .tex)
       - name: Build PDF
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
-          args: -pdf -jobname="A-New-Covenant-for-Learning" -interaction=nonstopmode -file-line-error -halt-on-error
+          root_file: A-New-Covenant-for-Learning.tex
+          args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
 
       # Kopia do docs/ pod GitHub Pages
       - name: Prepare docs
