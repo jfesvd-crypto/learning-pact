@@ -13,6 +13,10 @@
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
 
+% Numeration depth (sections/subsections/subsubsections) and ToC depth
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
 % Tables and figures
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -23,15 +27,24 @@
 \usepackage{enumitem}
 \usepackage{csquotes}
 
-% Links and clever references
-% Math first
+% Math (must be before cleveref)
 \usepackage{amsmath}
 
 % Links
 \usepackage[hidelinks]{hyperref}
+
+% PDF metadata
+\hypersetup{
+  pdftitle={A New Covenant for Learning: From Compulsion to Concert},
+  pdfauthor={Janusz Feszter (ORCID 0009-0002-1330-7530)}
+  % pdfsubject={Education, Multi-Agent Systems},
+  % pdfkeywords={education, multi-agent, mastery learning, DLT}
+}
+
+% ORCID icon/link (after hyperref)
 \usepackage{orcidlink}
 
-% Clever references
+% Clever references (after hyperref)
 \usepackage[capitalise,noabbrev]{cleveref}
 
 % ---------------------------
@@ -50,8 +63,6 @@
 \addbibresource{references.bib}
 
 % To switch to APA style:
-% 1) Comment the biblatex line above and uncomment the two lines below.
-% 2) Use \autocite (already used in the text) for inline APA parentheses.
 % \usepackage[backend=biber,style=apa,sorting=nyt,giveninits=true,maxcitenames=2,autocite=inline]{biblatex}
 % \DeclareLanguageMapping{english}{english-apa}
 
@@ -126,24 +137,6 @@
 \newcommand{\createddate}{13.09.2025}
 \date{Created: \createddate\\Updated: \today}
 
-% Math first
-\usepackage{amsmath}
-
-% Links
-\usepackage[hidelinks]{hyperref}
-
-% PDF metadata (tu wstaw)
-\hypersetup{
-  pdftitle={A New Covenant for Learning: From Compulsion to Concert},
-  pdfauthor={Janusz Feszter (ORCID 0009-0002-1330-7530)}
-  % opcjonalnie:
-  % pdfsubject={Education, Multi-Agent Systems},
-  % pdfkeywords={education, multi-agent, mastery learning, DLT}
-}
-
-% Clever references (musi być po hyperref)
-\usepackage[capitalise,noabbrev]{cleveref}
-
 \begin{document}
 \maketitle
 \tableofcontents
@@ -170,6 +163,7 @@
 \end{tabularx}
 \end{table}
 
+% Leave the Preamble unnumbered but in ToC
 \section*{Preamble: A New Covenant for Learning: From Compulsion to Concert}
 \addcontentsline{toc}{section}{Preamble: A New Covenant for Learning: From Compulsion to Concert}
 This document is not merely a technical proposal; it is a response to a civilizational need. It stands as a manifesto for a new era in education, one in which technology serves to liberate human potential, not to mechanically format it. The contemporary education system, in its essence, resembles a cacophony---a collection of uncoordinated, often contradictory demands that clash in a student's life, creating dissonance and stress. At the heart of this cacophony is the homework paradigm, which relentlessly infringes upon the temporal sovereignty of young people, transforming their lives into an endless cycle of obligations.
@@ -208,7 +202,7 @@ Therefore, we formally propose establishing a \enquote{Scholastic Pact on Tempor
 
 Moreover, the nature of most assigned homework is inconsistent with modern educational goals. Instead of creative application, complex problem solving, or teamwork, tasks tend to emphasize mechanical reinforcement of class material \autocite{birch2018}. This is precisely the kind of \enquote{mindless} work that leads to a disconnect between effort and mastery \autocite{pope2013}.
 
-% TODO: If you want explicit Pact principles as a list, uncomment and edit.
+% TODO: Pact principles list (optional)
 % \begin{description}[leftmargin=2em,style=sameline]
 %   \item[Respect for time:] Define protected windows for rest, family, and hobbies.
 %   \item[Mastery-first:] Replace time-on-task metrics with verifiable mastery.
@@ -217,7 +211,22 @@ Moreover, the nature of most assigned homework is inconsistent with modern educa
 %   \item[Equity:] Design away resource-dependence and hidden homework subsidies.
 % \end{description}
 
-\subsection{The Voice of the Agent: Standardized Communication and Negotiation Protocols}
+\section{Symphony of Agents: An Architecture for Personalized, Real-Time Learning}
+
+\subsection{The Foundational Layer: Decentralized Trust and Verifiable Mastery via DLT}
+The foundation of the entire system is a novel approach to data and trust. Instead of relying on centralized, vulnerable databases, we implement a layer based on Distributed Ledger Technology (DLT). DLT securely records and verifies transactions (here: mastery credentials) without a single central authority \autocite{gao2019}. While all blockchains are DLTs, not all DLTs are blockchains \autocite{finra2017,investopedia2024}. For education, a permissioned DLT is preferable: only trusted entities (e.g., certified Curriculum or Mentor Agents) can validate and commit new credentials, preserving integrity while remaining decentralized \autocite{investopedia2024,gao2019}.
+
+A common criticism is immutability \autocite{gao2019}. In mastery-based education this is a feature: a credential is a fact at a given moment---once verified, it should be tamper-proof and portable across contexts, forming a lifelong transcript of competencies.
+
+This layer is supported by Distributed Hash Tables (DHTs), decentralized key--value maps enabling efficient retrieval by key \autocite{wiki_dht,dua2025_dht,wiki_dht2}. Inspired by Holochain, agents keep a local source chain while publishing validated, public data to a shared DHT---yielding redundancy, fault tolerance, and availability \autocite{holochain}.
+
+\subsection{The Agent Collective: An Autonomous System for Educational Orchestration}
+The actors in this infrastructure are autonomous software agents. Their rational behavior is grounded in the Belief--Desire--Intention (BDI) model \autocite{georgeff1998,wiki_bdi,rao_bdi}.
+
+\subsubsection{The Agent's Mind: Practical Reasoning in the BDI Model}
+Beliefs capture the agent’s current knowledge (e.g., a Student Agent’s verified mastery state from the ledger). Desires define goals (e.g., achieve the next node on a personalized path). Intentions are committed plans that focus resources and avoid paralysis by analysis \autocite{georgeff1998}. BDI supports recovery from failure (e.g., after a failed challenge) and opportunism (e.g., a mentor becomes available). Advanced variants support Theory of Mind for negotiation and collaboration \autocite{zhao2025}.
+
+\subsubsection{The Agent's Voice: Standardized Communication and Negotiation Protocols}
 For heterogeneous agents (students, teachers, AI resources, curricula) to communicate effectively, a common Agent Communication Language is essential \autocite{dua2025_acl,labrou1999,fipa2002,sarl_github}. We propose adopting \gls{fipaacl}, which defines message structure, including:
 - Performative (e.g., inform, request, \gls{cnp} cfp),
 - Sender/Receiver,
@@ -231,21 +240,19 @@ Within this language, agents use interaction protocols. A fundamental one for ta
 - Evaluation and Selection: initiator chooses the best proposal.
 - Acceptance/Rejection: winners get accept-proposal; others get reject-proposal.
 
-Although the Contract Net protocol is a robust and proven mechanism, its classic form has limitations in dynamic, large-scale settings (communication overhead for frequent, low-cost interactions) \autocite{ohare1998}. This observation motivates a more lightweight orchestration mechanism.
+Although the Contract Net protocol is a robust and proven mechanism, its classic form has limitations in dynamic, large-scale settings (communication overhead for frequent, low-cost interactions) \autocite{ohare1998}. This motivates a more lightweight orchestration mechanism.
 
 \subsection{The Symphony Protocol: Dynamic Allocation of Educational Interventions via Beacons}
 Our orchestration is inspired by the \enquote{Symphony} platform---a decentralized multi-agent system for scalable, privacy-preserving collaboration \autocite{wang2025,moonlight_symphony,emergent_mind,wang2025_2}. The key element is a beacon-selection protocol, a lightweight alternative to Contract Net \autocite{emergent_mind}.
 
 Process \autocite{wang2025,moonlight_symphony}:
-- Beacon Emission: an agent with a subtask (e.g., Student Agent needing a resource) broadcasts a short \enquote{Beacon} describing requirements (topic, level, style).
-- Local Match Evaluation: available agents compute a local match score (0--1) against their capabilities.
-- Best Match Selection: scores are returned; the initiator selects the best-matching agent to perform the task \autocite{moonlight_symphony}.
+- Beacon Emission: an agent with a subtask broadcasts a short \enquote{Beacon} describing requirements (topic, level, style).
+- Local Match Evaluation: available agents compute a local match score (0--1) against capabilities.
+- Best Match Selection: scores are returned; the initiator selects the best-matching agent \autocite{moonlight_symphony}.
 
-Compared to Contract Net, beacon-selection is more efficient for frequent, minor interactions, ideal for dynamically matching needs to resources in real time \autocite{emergent_mind}.
-
-A pragmatic hybrid model uses:
-- Beacon-selection for high-frequency, low-risk, automated matching (e.g., \enquote{find a 5-minute intro video on photosynthesis}).
-- Contract Net for high-stakes, complex tasks (e.g., booking a 30-minute session with a human mentor).
+Compared to Contract Net, beacon-selection is more efficient for frequent, minor interactions, ideal for dynamic matching in real time \autocite{emergent_mind}. A pragmatic hybrid model uses:
+- Beacon-selection for high-frequency, low-risk matching (e.g., \enquote{find a 5-minute intro video on photosynthesis});
+- Contract Net for high-stakes, complex tasks (e.g., booking a 30-minute human-mentor session).
 
 \section{The Pact in Practice: A Strategic Transformation Plan}
 Transforming the architecture into practice requires defining roles, illustrating workflows, and proposing a pragmatic, phased implementation strategy based on a \gls{mve} \autocite{adner2023,adner2023_2,msg_advisors,audi_weihe}.
@@ -297,6 +304,25 @@ An \gls{mve} is the smallest configuration of interdependent actors that can del
 - Horizontal: add subjects, then schools in a federated network.
 - Vertical: introduce specialized agents (peer mentors, career pathways, group projects).
 - Over time: toward a lifelong, portable educational network with verifiable credentials.
+
+\section{A Resonant Future: A Credible and Inspiring Vision}
+
+\subsection{A Credible Path: Navigating Technical, Ethical, and Pedagogical Hurdles}
+\begin{itemize}[leftmargin=1.2em]
+  \item \textbf{Data privacy and security.} A decentralized DLT/DHT model avoids single points of failure. Primary copies of student data can live on local source chains under learner control, while public, validated artifacts are shared over a DHT with cryptographic access control \autocite{holochain,moonlight_symphony}.
+  \item \textbf{Algorithmic bias.} Reduce reliance on a single model. Use multi-agent aggregation (e.g., weighted voting/ensemble of diverse agents) to synthesize responses and audit patterns over time \autocite{moonlight_symphony,wang2025}.
+  \item \textbf{Digital divide.} Pair the MVE rollout with targeted device/connectivity support. Favor lightweight, edge-first agents to lower hardware requirements compared to heavy cloud-first apps \autocite{moonlight_symphony}.
+  \item \textbf{Teacher development.} Run a parallel professional development track so teachers transition from mass content delivery to high-value mentoring, facilitation, and orchestration within the agent ecosystem.
+\end{itemize}
+
+\subsection{An Inspiring Vision: Agent-Assisted Learning and the Reclamation of Human Potential}
+\begin{itemize}[leftmargin=1.2em]
+  \item \textbf{Beyond homework.} The \enquote{Pact on Temporal Non-Aggression} is realized: time is respected; stress and burnout give way to engaged, purposeful learning.
+  \item \textbf{Lifelong, portable mastery.} A permissioned DLT-backed competency ledger becomes a verifiable, cross-context portfolio of skills. Modular, flexible paths replace one-size-fits-all credentials.
+  \item \textbf{Rehumanized classrooms.} Agents handle routine delivery, practice, and basic checks; teachers focus on inspiration, mentoring, and complex collaboration that machines cannot replace.
+\end{itemize}
+
+\noindent In sum, the \enquote{Symphony of Agents} operationalizes an ethical commitment---turning assessment into verifiable mastery and shifting the question from \enquote{Did you do your homework?} to \enquote{What do you want to learn today, and how can I help?}
 
 % ---------------------------
 % Glossaries printout
