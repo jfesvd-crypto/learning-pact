@@ -4,6 +4,7 @@
 [![Created](https://img.shields.io/badge/Created-13%20Sep%202025-lightgrey)](#)
 [![Updated](https://img.shields.io/github/last-commit/jfesvd-crypto/learning-pact-latex-Create.)](https://github.com/jfesvd-crypto/learning-pact-latex-Create./commits/main)
 [![Read the PDF](https://img.shields.io/badge/PDF-Read%20the%20paper-blue)](https://jfesvd-crypto.github.io/learning-pact-latex-Create./A-New-Covenant-for-Learning.pdf)
+[![Cite (BibTeX)](https://img.shields.io/badge/Cite-BibTeX-blue)](https://raw.githubusercontent.com/jfesvd-crypto/learning-pact-latex-Create./main/docs/citation.bib)
 [![Build PDF](https://github.com/jfesvd-crypto/learning-pact-latex-Create./actions/workflows/latex.yml/badge.svg)](https://github.com/jfesvd-crypto/learning-pact-latex-Create./actions)
 
 Direct link:
