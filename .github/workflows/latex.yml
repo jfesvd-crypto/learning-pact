@@ -1,3 +1,8 @@
+  - name: Checkout
+    uses: actions/checkout@v4
+    with:
+      fetch-depth: 0
+
   - name: Build PDF (LaTeX)
     uses: xu-cheng/latex-action@v3
     with:
@@ -9,10 +14,13 @@
       set -e
       mkdir -p public
       cp A-New-Covenant-for-Learning.pdf public/
+
       sudo apt-get update
       sudo apt-get install -y qrencode imagemagick
+
       PDF_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/A-New-Covenant-for-Learning.pdf"
       qrencode -o public/qr.png -s 12 -m 2 "${PDF_URL}"
+
       convert -size 1200x630 xc:white \
         -fill "#4054B2" -gravity North -pointsize 54 -annotate +0+60 "A New Covenant for Learning" \
         -fill "#333333" -gravity North -pointsize 36 -annotate +0+130 "From Compulsion to Concert" \
