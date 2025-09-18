@@ -2,13 +2,15 @@
 
 [![Version](https://img.shields.io/badge/Version-5-informational)](#)
 [![Created](https://img.shields.io/badge/Created-13%20Sep%202025-lightgrey)](#)
-[![Updated](https://img.shields.io/github/last-commit/jfesvd-crypto/learning-pact-latex-Create.)](https://github.com/jfesvd-crypto/learning-pact-latex-Create./commits/main)
-[![Read the PDF](https://img.shields.io/badge/PDF-Read%20the%20paper-blue)](https://jfesvd-crypto.github.io/learning-pact-latex-Create./A-New-Covenant-for-Learning.pdf)
-[![Cite (BibTeX)](https://img.shields.io/badge/Cite-BibTeX-blue)](https://raw.githubusercontent.com/jfesvd-crypto/learning-pact-latex-Create./main/docs/citation.bib)
-[![Build PDF](https://github.com/jfesvd-crypto/learning-pact-latex-Create./actions/workflows/latex.yml/badge.svg)](https://github.com/jfesvd-crypto/learning-pact-latex-Create./actions)
+[![Last commit](https://img.shields.io/github/last-commit/jfesvd-crypto/learning-pact?label=last%20commit)](https://github.com/jfesvd-crypto/learning-pact/commits/main)
+[![Read the paper](https://img.shields.io/badge/PDF-Read%20the%20paper-blue)](https://jfesvd-crypto.github.io/learning-pact/A-New-Covenant-for-Learning.pdf)
+[![Cite (BibTeX)](https://img.shields.io/badge/Cite-BibTeX-blue)](https://raw.githubusercontent.com/jfesvd-crypto/learning-pact/main/docs/citation.bib)
+[![Build PDF](https://github.com/jfesvd-crypto/learning-pact/actions/workflows/latex.yml/badge.svg)](https://github.com/jfesvd-crypto/learning-pact/actions)
+<!-- (opcjonalnie po nadaniu DOI) -->
+<!-- [![DOI](https://zenodo.org/badge/DOI/PASTE_DOI_HERE.svg)](https://doi.org/PASTE_DOI_HERE) -->
 
 Direct link:
-https://jfesvd-crypto.github.io/learning-pact-latex-Create./A-New-Covenant-for-Learning.pdf
+https://jfesvd-crypto.github.io/learning-pact/A-New-Covenant-for-Learning.pdf
 
 ---
 
