@@ -3,13 +3,13 @@
     with:
       fetch-depth: 0
 
-  - name: Build PDF (LaTeX)
+  name: Build PDF (LaTeX)
     uses: xu-cheng/latex-action@v3
     with:
       root_file: A-New-Covenant-for-Learning.tex
       args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
 
-  - name: Prepare site (PDF, QR, OG image, index.html)
+  name: Prepare site (PDF, QR, OG image, index.html)
     run: |
       set -e
       mkdir -p public
@@ -66,14 +66,14 @@
       </html>
       HTML
 
-  - name: Configure Pages
+  name: Configure Pages
     uses: actions/configure-pages@v5
 
-  - name: Upload artifact
+  name: Upload artifact
     uses: actions/upload-pages-artifact@v3
     with:
       path: ./public
 
-  - name: Deploy to GitHub Pages
+  name: Deploy to GitHub Pages
     id: deployment
     uses: actions/deploy-pages@v4
