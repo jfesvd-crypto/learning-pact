@@ -1,105 +1,92 @@
-name: Build PDF
-on:
-  push:
-    paths:
-      - "**.tex"
-      - "**.bib"
-      - "latexmkrc"
-      - ".github/workflows/latex.yml"
-  workflow_dispatch: {}
+  - name: Build PDF (LaTeX)
+    uses: xu-cheng/latex-action@v3
+    with:
+      root_file: A-New-Covenant-for-Learning.tex
+      args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
+  - name: Prepare docs + QR + index.html
+    run: |
+      set -e
+      PDF="A-New-Covenant-for-Learning.pdf"
+      OWNER="${{ github.repository_owner }}"
+      REPO="${{ github.event.repository.name }}"
+      PDF_URL="https://${OWNER}.github.io/${REPO}/${PDF}"
+      RAW_BIB="https://raw.githubusercontent.com/${OWNER}/${REPO}/main/docs/citation.bib"
 
-      - name: Build PDF (LaTeX)
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: A-New-Covenant-for-Learning.tex
-          args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
+      mkdir -p docs
+      cp "${PDF}" docs/
 
-      - name: Prepare docs + QR + index.html
-        run: |
-          set -e
-          PDF="A-New-Covenant-for-Learning.pdf"
-          OWNER="${{ github.repository_owner }}"
-          REPO="${{ github.event.repository.name }}"
-          PDF_URL="https://${OWNER}.github.io/${REPO}/${PDF}"
-          RAW_BIB="https://raw.githubusercontent.com/${OWNER}/${REPO}/main/docs/citation.bib"
+      sudo apt-get update
+      sudo apt-get install -y qrencode imagemagick
 
-          mkdir -p docs
-          cp "${PDF}" docs/
+      qrencode -o docs/qr.png -s 12 -m 2 "${PDF_URL}"
 
-          sudo apt-get update
-          sudo apt-get install -y qrencode imagemagick
+      convert -size 1200x630 xc:white \
+        -fill "#4054B2" -gravity North -pointsize 54 -annotate +0+60 "A New Covenant for Learning" \
+        -fill "#333333" -gravity North -pointsize 36 -annotate +0+130 "From Compulsion to Concert" \
+        docs/qr.png -gravity SouthEast -geometry +60+60 -composite docs/og-image.png
 
-          # QR
-          qrencode -o docs/qr.png -s 12 -m 2 "${PDF_URL}"
+      cat > docs/index.html <<'HTML'
+      <!doctype html>
+      <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <title>A New Covenant for Learning: From Compulsion to Concert</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Mastery-first blueprint: Pact on Temporal Non-Aggression + Symphony of Agents + verifiable mastery on permissioned DLT.">
+        <link rel="canonical" href="PDF_URL">
+        <meta property="og:title" content="A New Covenant for Learning: From Compulsion to Concert">
+        <meta property="og:description" content="From homework to a Symphony of Agents. Read the paper.">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="PDF_URL">
+        <meta property="og:image" content="OG_IMAGE_URL">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="A New Covenant for Learning">
+        <meta name="twitter:description" content="Mastery-first, low-stress learning.">
+        <meta name="twitter:image" content="OG_IMAGE_URL">
+        <style>
+          body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:2rem 1rem;line-height:1.5;color:#222}
+          .wrap{max-width:880px;margin:0 auto;text-align:center}
+          h1{font-weight:700;margin:0 0 0.5rem}
+          p{margin:0.5rem 0 1rem}
+          .btn{display:inline-block;background:#4054B2;color:#fff;padding:0.6rem 1rem;border-radius:8px;text-decoration:none;margin:0.25rem}
+          img{max-width:200px;margin-top:1rem;opacity:0.9}
+        </style>
+      </head>
+      <body>
+        <div class="wrap">
+          <h1>A New Covenant for Learning</h1>
+          <p>From Compulsion to Concert • Mastery-first • Symphony of Agents • Permissioned DLT</p>
+          <p>
+            <a class="btn" href="PDF_URL">Open PDF</a>
+            <a class="btn" href="CITE_URL">Cite (BibTeX)</a>
+          </p>
+          <img src="qr.png" alt="QR code to the PDF">
+        </div>
+      </body>
+      </html>
+      HTML
 
-          # OG image 1200x630 (tytuł + podtytuł + QR)
-          convert -size 1200x630 xc:white \
-            -fill "#4054B2" -gravity North -pointsize 54 -annotate +0+60 "A New Covenant for Learning" \
-            -fill "#333333" -gravity North -pointsize 36 -annotate +0+130 "From Compulsion to Concert" \
-            docs/qr.png -gravity SouthEast -geometry +60+60 -composite docs/og-image.png
+      sed -i "s|PDF_URL|${PDF_URL}|g" docs/index.html
+      sed -i "s|OG_IMAGE_URL|https://${OWNER}.github.io/${REPO}/og-image.png|g" docs/index.html
+      sed -i "s|CITE_URL|${RAW_BIB}|g" docs/index.html
 
-          # index.html z meta OG/Twitter i linkami
-          cat > docs/index.html <<'HTML'
-          <!doctype html>
-          <html lang="en">
-          <head>
-            <meta charset="utf-8">
-            <title>A New Covenant for Learning: From Compulsion to Concert</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="description" content="Mastery-first blueprint: Pact on Temporal Non-Aggression + Symphony of Agents + verifiable mastery on permissioned DLT.">
-            <link rel="canonical" href="PDF_URL">
-            <meta property="og:title" content="A New Covenant for Learning: From Compulsion to Concert">
-            <meta property="og:description" content="From homework to a Symphony of Agents. Read the paper.">
-            <meta property="og:type" content="article">
-            <meta property="og:url" content="PDF_URL">
-            <meta property="og:image" content="OG_IMAGE_URL">
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:title" content="A New Covenant for Learning">
-            <meta name="twitter:description" content="Mastery-first, low-stress learning.">
-            <meta name="twitter:image" content="OG_IMAGE_URL">
-            <style>
-              body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:2rem 1rem;line-height:1.5;color:#222}
-              .wrap{max-width:880px;margin:0 auto;text-align:center}
-              h1{font-weight:700;margin:0 0 0.5rem}
-              p{margin:0.5rem 0 1rem}
-              .btn{display:inline-block;background:#4054B2;color:#fff;padding:0.6rem 1rem;border-radius:8px;text-decoration:none;margin:0.25rem}
-              img{max-width:200px;margin-top:1rem;opacity:0.9}
-            </style>
-          </head>
-          <body>
-            <div class="wrap">
-              <h1>A New Covenant for Learning</h1>
-              <p>From Compulsion to Concert • Mastery-first • Symphony of Agents • Permissioned DLT</p>
-              <p>
-                <a class="btn" href="PDF_URL">Open PDF</a>
-                <a class="btn" href="CITE_URL">Cite (BibTeX)</a>
-              </p>
-              <img src="qr.png" alt="QR code to the PDF">
-            </div>
-          </body>
-          </html>
-          HTML
+  - name: Commit & push docs assets (rebase-safe)
+    run: |
+      set -e
+      git config user.name  "github-actions[bot]"
+      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      # Zaciągnij najnowszy stan zdalny i zrebasuj, żeby uniknąć non-fast-forward
+      git fetch origin main
+      git checkout main
+      git pull --rebase origin main || true
+      git add docs/A-New-Covenant-for-Learning.pdf docs/qr.png docs/og-image.png docs/index.html
+      git commit -m "docs: update PDF, QR, OG image, index.html [skip ci]" || echo "No changes to commit"
+      git push origin main
 
-          sed -i "s|PDF_URL|${PDF_URL}|g" docs/index.html
-          sed -i "s|OG_IMAGE_URL|https://${OWNER}.github.io/${REPO}/og-image.png|g" docs/index.html
-          sed -i "s|CITE_URL|${RAW_BIB}|g" docs/index.html
-
-      - name: Commit docs assets
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "docs: update PDF, QR, OG image, index.html [skip ci]"
-          file_pattern: docs/*
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: A-New-Covenant-for-Learning
-          path: A-New-Covenant-for-Learning.pdf
+  - name: Upload artifact
+    if: always()
+    uses: actions/upload-artifact@v4
+    with:
+      name: A-New-Covenant-for-Learning
+      path: A-New-Covenant-for-Learning.pdf
