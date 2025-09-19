@@ -1,37 +1,27 @@
-
-CITATION.cff
-
-```yaml
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
 title: "A New Covenant for Learning: From Compulsion to Concert"
-version: "5"
-date-released: "2025-09-13"
-url: "https://jfesvd-crypto.github.io/learning-pact-latex-Create./A-New-Covenant-for-Learning.pdf"
-repository-code: "https://github.com/jfesvd-crypto/learning-pact-latex-Create."
 authors:
   - family-names: "Feszter"
     given-names: "Janusz"
-    email: "jfeshter@gmail.com"
     orcid: "https://orcid.org/0009-0002-1330-7530"
-keywords:
-  - education
-  - edtech
-  - multi-agent systems
-  - mastery learning
-  - distributed ledger
-abstract: >
-  A mastery-first blueprint for education that replaces mass homework with
-  decentralized, agent-orchestrated, just-in-time learning and verifiable
-  mastery credentials on permissioned DLT. Includes an implementation path
-  via a Minimum Viable Ecosystem.
+version: "5.0.2"
+date-released: 2025-09-19
+doi: "10.5281/zenodo.17157475"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.17157475"
+url: "https://jfesvd-crypto.github.io/learning-pact/"
+repository-code: "https://github.com/jfesvd-crypto/learning-pact"
 preferred-citation:
-  type: article
+  type: report
+  title: "A New Covenant for Learning: From Compulsion to Concert"
   authors:
     - family-names: "Feszter"
       given-names: "Janusz"
-  title: "A New Covenant for Learning: From Compulsion to Concert"
+      orcid: "https://orcid.org/0009-0002-1330-7530"
   year: 2025
-  month: 9
+  doi: "10.5281/zenodo.17157475"
+  url: "https://jfesvd-crypto.github.io/learning-pact/A-New-Covenant-for-Learning.pdf"
   publisher: "GitHub Pages"
-  url: "https://jfesvd-crypto.github.io/learning-pact-latex-Create./A-New-Covenant-for-Learning.pdf"
+  notes: "Version 5 — Created: 2025-09-13"
