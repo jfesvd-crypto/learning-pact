@@ -36,12 +36,12 @@ Key ideas:
 ## Cite this work
 
 ### How to cite (BibTeX)
-```bibtex
 @misc{Feszter2025NewCovenant,
-  author       = {Janusz Feszter},
-  title        = {A New Covenant for Learning: From Compulsion to Concert},
-  year         = {2025},
+  author = {Janusz Feszter},
+  title  = {A New Covenant for Learning: From Compulsion to Concert},
+  year   = {2025},
   howpublished = {GitHub Pages},
-  url          = {https://jfesvd-crypto.github.io/learning-pact/A-New-Covenant-for-Learning.pdf},
-  note         = {Version 5 — Created: 2025-09-13}
+  url    = {https://jfesvd-crypto.github.io/learning-pact/A-New-Covenant-for-Learning.pdf},
+  doi    = {10.5281/zenodo.17157475},
+  note   = {Version 5 — Created: 2025-09-13}
 }
