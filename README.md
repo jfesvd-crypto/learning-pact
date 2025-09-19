@@ -1,5 +1,6 @@
 # A New Covenant for Learning: From Compulsion to Concert
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17157475.svg)](https://doi.org/10.5281/zenodo.17157475)
 [![Version](https://img.shields.io/badge/Version-5-informational)](#)
 [![Created](https://img.shields.io/badge/Created-13%20Sep%202025-lightgrey)](#)
 [![Last commit](https://img.shields.io/github/last-commit/jfesvd-crypto/learning-pact?label=last%20commit)](https://github.com/jfesvd-crypto/learning-pact/commits/main)
